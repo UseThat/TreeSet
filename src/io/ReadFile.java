@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.TreeSet;
 
-public class ReadFile {
+public class ReadFile implements Comparable{
     private BufferedReader bufferedReader;
     private TreeSet<String> nameSet;
     private static final String FILE_NAME = "namespl.txt";
@@ -30,5 +30,17 @@ public class ReadFile {
     }
 
 
+    @Override
+    public int compareTo(Object o) {
+        return 0;
+    }
 
+    @Override
+    public String toString() {
+        String returnString = "";
+        for(String strg : nameSet){
+            returnString += strg + "\n";
+        }
+        return returnString;
+    }
 }
