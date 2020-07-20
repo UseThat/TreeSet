@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.TreeSet;
 
-public class ReadFile implements Comparable{
+public class ReadFile {
     private BufferedReader bufferedReader;
     private TreeSet<String> nameSet;
     private static final String FILE_NAME = "namespl.txt";
@@ -18,22 +18,23 @@ public class ReadFile implements Comparable{
     }
 
     private void readFile(String fileName) throws IOException {
+        TreeSet<String> temp = new TreeSet<>();
         try{
             bufferedReader = new BufferedReader(new FileReader(fileName));
             String line = "";
             while((line=bufferedReader.readLine())!=null){
-                nameSet.add(line);
+                temp.add(line);
             }
         }catch (IOException ex){
             System.out.println("Error!");
         }
+        nameSet = (TreeSet<String>) temp.descendingSet();
+        bufferedReader.close();
+
     }
 
 
-    @Override
-    public int compareTo(Object o) {
-        return 0;
-    }
+
 
     @Override
     public String toString() {
@@ -42,5 +43,17 @@ public class ReadFile implements Comparable{
             returnString += strg + "\n";
         }
         return returnString;
+    }
+
+    public void getFirst(){
+        System.out.println("First element: "+nameSet.first());
+    }
+
+    public void getLast(){
+        System.out.println("Last element: "+nameSet.last());
+    }
+
+    public void getSize(){
+        System.out.println("Set size: "+nameSet.size());
     }
 }
